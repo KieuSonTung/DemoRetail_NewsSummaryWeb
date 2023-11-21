@@ -11,9 +11,13 @@
 <title>Question-Answer App</title>
 
 <script>
-    function showAnswer(button) {
+    function toggleAnswer(button) {
         const answer = button.parentElement.querySelector('.answer');
-        answer.style.display = 'block';
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
     }
 </script>
 
@@ -24,17 +28,10 @@
         {% for question in questions %}
             <div class="question-box">
                 <p>{{ question }}</p>
-                <button onclick="showAnswer(this)">Show Answer</button>
+                <button onclick="toggleAnswer(this)">Show Answer</button>
                 <div class="answer" style="display: none;">{{ answers[loop.index0] }}</div>
             </div>
         {% endfor %}
     </div>
-
-    <!-- <script>
-        function showAnswer(button) {
-            const answer = button.nextElementSibling.nextElementSibling;
-            answer.style.display = 'block';
-        }
-    </script> -->
 </body>
 </html>
