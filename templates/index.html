@@ -10,6 +10,52 @@
     
 <title>Question-Answer App</title>
 
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    #questions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .question-box {
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .question-box p {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .answer {
+        margin-top: 10px;
+        display: none;
+    }
+
+    .button {
+        background-color: #9fbfe0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #0069d9;
+    }
+</style>
+
 <script>
     function toggleAnswer(button) {
         const answer = button.parentElement.querySelector('.answer');
