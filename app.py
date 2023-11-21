@@ -14,7 +14,7 @@ def get_data(gsheetid='1n8B1648GenFEgdNiwhXyKG3AxHcT9PCoHp09uY49exc', sheet_name
     if not os.path.exists(qna_path):
         gsheet_url = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, sheet_name)
         df = pd.read_csv(gsheet_url)
-        df.to_csv('qna.csv', index=False)
+        df.to_csv('data/qna.csv', index=False)
     else:
         df = pd.read_csv(qna_path)
     
