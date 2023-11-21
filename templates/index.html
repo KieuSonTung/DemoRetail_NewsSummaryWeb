@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Button Demo</title>
+</head>
+<body>
+    <form action="/" method="POST">
+        <button type="submit" name="button" value="A">A</button>
+        <button type="submit" name="button" value="B">B</button>
+        <button type="submit" name="button" value="C">C</button>
+    </form>
+
+    <p id="button-value-display">Selected button: {{ button_value }}</p>
+    <p id="answer-display">Corresponding answer: {{ answer }}</p>
+</body>
+</html>
