@@ -14,32 +14,21 @@ def get_data(gsheetid='1n8B1648GenFEgdNiwhXyKG3AxHcT9PCoHp09uY49exc', sheet_name
     if not os.path.exists(qna_path):
         gsheet_url = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, sheet_name)
         df = pd.read_csv(gsheet_url)
-        df.to_csv('data/qna.csv', index=False)
+        df.to_csv(qna_path, index=False)
     else:
         df = pd.read_csv(qna_path)
-    
     return df
 
-# find the answer
-def get_answer(df, question):
-    try:
-        answer = df.loc[df['question'] == question, 'answer'].to_list()[0]
-    except:
-        answer = None
-    return answer
+def load_questions_and_answers():
+    data = get_data()
+    questions = data['question'].tolist()
+    answers = data['answer'].tolist()
+    return questions, answers
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
-    df = get_data()
-    if request.method == "POST":
-        button_value = request.form["button"]
-        if button_value:
-            answer = get_answer(df, button_value)
-            return render_template("index.html", button_value=button_value, answer=answer)
-        else:
-            return render_template("index.html")
-    else:
-        return render_template("index.html")
+    questions, answers = load_questions_and_answers()
+    return render_template('index.html', questions=questions, answers=answers)
 
 if __name__ == "__main__":
     app.run(debug=True)

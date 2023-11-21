@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
-    <title>Flask Button Demo</title>
+  
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>Question-Answer App</title>
+
+<script>
+    function showAnswer(button) {
+        const answer = button.parentElement.querySelector('.answer');
+        answer.style.display = 'block';
+    }
+</script>
+
 </head>
 <body>
-    <form action="/" method="POST">
-        <button type="submit" name="button" value="A">A</button>
-        <button type="submit" name="button" value="B">B</button>
-        <button type="submit" name="button" value="C">C</button>
-    </form>
+    <h1>Question-Answer App</h1>
+    <div id="questions">
+        {% for question in questions %}
+            <div class="question-box">
+                <p>{{ question }}</p>
+                <button onclick="showAnswer(this)">Show Answer</button>
+                <div class="answer" style="display: none;">{{ answers[loop.index0] }}</div>
+            </div>
+        {% endfor %}
+    </div>
 
-    <p id="answer-display">Corresponding answer: {{ answer }}</p>
+    <!-- <script>
+        function showAnswer(button) {
+            const answer = button.nextElementSibling.nextElementSibling;
+            answer.style.display = 'block';
+        }
+    </script> -->
 </body>
 </html>
