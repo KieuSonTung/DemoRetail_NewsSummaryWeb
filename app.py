@@ -10,6 +10,7 @@ def get_data(gsheetid='1n8B1648GenFEgdNiwhXyKG3AxHcT9PCoHp09uY49exc', sheet_name
         os.mkdir('data/')
     
     qna_path = 'data/qna.csv'
+    # if data not available in local => download, else => load data
     if not os.path.exists(qna_path):
         gsheet_url = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, sheet_name)
         df = pd.read_csv(gsheet_url)
@@ -19,6 +20,7 @@ def get_data(gsheetid='1n8B1648GenFEgdNiwhXyKG3AxHcT9PCoHp09uY49exc', sheet_name
     
     return df
 
+# find the answer
 def get_answer(df, question):
     try:
         answer = df.loc[df['question'] == question, 'answer'].to_list()[0]
