@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-def get_data(gsheetid='1n8B1648GenFEgdNiwhXyKG3AxHcT9PCoHp09uY49exc', sheet_name='test'):
+def get_data(gsheetid='1wq0ouJmxR9sUQMHlsQHKqzeBdVl5dHYEC8gqMCembCg', sheet_name='Sheet1'):
     # check folder data exists
     if not os.path.exists('data'):
         os.mkdir('data/')
