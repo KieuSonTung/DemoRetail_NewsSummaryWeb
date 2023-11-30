@@ -19,10 +19,18 @@ def get_data(gsheetid='1wq0ouJmxR9sUQMHlsQHKqzeBdVl5dHYEC8gqMCembCg', sheet_name
         df = pd.read_csv(qna_path)
     return df
 
+def add_br_tag(x):
+    x = x.replace('\n', '<br>')
+    x = x.replace('\"', '\'')
+    return x
+
 def load_questions_and_answers():
     data = get_data()
     questions = data['question'].tolist()
     answers = data['answer'].tolist()
+
+    answers = [add_br_tag(x) for x in answers]
+
     return questions, answers
 
 @app.route("/")

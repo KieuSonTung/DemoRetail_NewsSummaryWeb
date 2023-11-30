@@ -58,8 +58,9 @@
 </style>
 
 <script>
-    function toggleAnswer(button) {
+    function toggleAnswer(button, content) {
         const answer = button.parentElement.querySelector('.answer');
+        answer.innerHTML = content;
         if (answer.style.display === 'block') {
             answer.style.display = 'none';
         } else {
@@ -71,12 +72,13 @@
 </head>
 <body>
     <h1>Question-Answer App</h1>
+    <!-- <p>A <br> B</p> -->
     <div id="questions">
         {% for question in questions %}
             <div class="question-box">
                 <p>{{ question }}</p>
-                <button onclick="toggleAnswer(this)">Show Answer</button>
-                <div class="answer" style="display: none;">{{ answers[loop.index0] }}</div>
+                <button onclick='toggleAnswer(this, "{{answers[loop.index0]}}")'>Show Answer</button>
+                <div class="answer" style="display: none;"></div>
             </div>
         {% endfor %}
     </div>
